@@ -1,80 +1,51 @@
 /**
- * 👋 Hey there!
- * This file is the starting point for your new WordPress/Gatsby site! 🚀
- * For more information about what this file is and does, see
- * https://www.gatsbyjs.com/docs/gatsby-config/
+ * Configure your Gatsby site with this file.
  *
+ * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
  */
 
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
 module.exports = {
-  /**
-   * Adding plugins to this array adds them to your Gatsby site.
-   *
-   * Gatsby has a rich ecosystem of plugins.
-   * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
-   */
+  siteMetadata: {
+    title: `Timeless Technologies`,
+    description: `ONE STOP BESPOKE DIGITAL SOLUTIONS`,
+    author: `@kloudcoder`,
+    siteUrl: `https://timelesstechnologies.gatsbyjs.io/`,
+  },
   plugins: [
-    {
-      /**
-       * First up is the WordPress source plugin that connects Gatsby
-       * to your WordPress site.
-       *
-       * visit the plugin docs to learn more
-       * https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/README.md
-       *
-       */
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        // the only required plugin option for WordPress is the GraphQL url.
-        url:
-          process.env.WPGRAPHQL_URL ||
-          `https://wpgatsbydemo.wpengine.com/graphql`,
-      },
-    },
-
-    /**
-     * We need this plugin so that it adds the "File.publicURL" to our site
-     * It will allow us to access static url's for assets like PDF's
-     *
-     * See https://www.gatsbyjs.org/packages/gatsby-source-filesystem/ for more info
-     */
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `assets`,
-        path: `${__dirname}/content/assets`,
+        name: `images`,
+        path: `${__dirname}/src/images`,
       },
     },
-
-    /**
-     * The following two plugins are required if you want to use Gatsby image
-     * See https://www.gatsbyjs.com/docs/gatsby-image/#setting-up-gatsby-image
-     * if you're curious about it.
-     */
     `gatsby-transformer-sharp`,
+     {
+      resolve: `gatsby-source-graphql`,
+      options: {
+        typeName: "WPGraphQL",
+        fieldName: "wpcontent",
+        url: `http://timeless.local/graphql`,
+      },
+    },
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-image`,
     {
-      // See https://www.gatsbyjs.com/plugins/gatsby-plugin-manifest/?=gatsby-plugin-manifest
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter WordPress Blog`,
-        short_name: `GatsbyJS & WP`,
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
         start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
+        background_color: `#663399`,
+        // This will impact how browsers show your PWA/website
+        // https://css-tricks.com/meta-theme-color-and-trickery/
+        // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-
-    // See https://www.gatsbyjs.com/plugins/gatsby-plugin-react-helmet/?=gatsby-plugin-react-helmet
-    `gatsby-plugin-react-helmet`,
-
-    /**
-     * this (optional) plugin enables Progressive Web App + Offline functionality
-     * To learn more, visit: https://gatsby.dev/offline
-     */
-    // `gatsby-plugin-offline`,
   ],
 }

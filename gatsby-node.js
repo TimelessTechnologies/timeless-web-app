@@ -1,166 +1,272 @@
-const path = require(`path`)
-const chunk = require(`lodash/chunk`)
+const _ = require(`lodash`);
+const Promise = require(`bluebird`);
+const path = require(`path`);
+const slash = require(`slash`);
 
-// This is a simple debugging tool
-// dd() will prettily dump to the terminal and kill the process
-// const { dd } = require(`dumper.js`)
+// Implement the Gatsby API “createPages”. This is
+// called after the Gatsby bootstrap is finished so you have
+// access to any information necessary to programmatically
+// create pages.
+// Will create pages for WordPress pages (route : /{slug})
+// Will create pages for WordPress posts (route : /post/{slug})
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage, createRedirect } = actions;
+  createRedirect({
+    fromPath: "/",
+    toPath: "/about-us",
+    redirectInBrowser: true,
+    IsPermanent: true,
+  });
+  return new Promise((resolve, reject) => {
+    // The “graphql” function allows us to run arbitrary
+    // queries against the local WordPress graphql schema. Think of
+    // it like the site has a built-in database constructed
+    // from the fetched data that you can run queries against.
 
-/**
- * exports.createPages is a built-in Gatsby Node API.
- * It's purpose is to allow you to create pages for your site! 💡
- *
- * See https://www.gatsbyjs.com/docs/node-apis/#createPages for more info.
- */
-exports.createPages = async gatsbyUtilities => {
-  // Query our posts from the GraphQL server
-  const posts = await getPosts(gatsbyUtilities)
-
-  // If there are no posts in WordPress, don't do anything
-  if (!posts.length) {
-    return
-  }
-
-  // If there are posts, create pages for them
-  await createIndividualBlogPostPages({ posts, gatsbyUtilities })
-
-  // And a paginated archive
-  await createBlogPostArchive({ posts, gatsbyUtilities })
-}
-
-/**
- * This function creates all the individual blog pages in this site
- */
-const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
-  Promise.all(
-    posts.map(({ previous, post, next }) =>
-      // createPage is an action passed to createPages
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      gatsbyUtilities.actions.createPage({
-        // Use the WordPress uri as the Gatsby page path
-        // This is a good idea so that internal links and menus work 👍
-        path: post.uri,
-
-        // use the blog post template as the page component
-        component: path.resolve(`./src/templates/blog-post.js`),
-
-        // `context` is available in the template as a prop and
-        // as a variable in GraphQL.
-        context: {
-          // we need to add the post id here
-          // so our blog post template knows which blog post
-          // the current page is (when you open it in a browser)
-          id: post.id,
-
-          // We also use the next and previous id's to query them and add links!
-          previousPostId: previous ? previous.id : null,
-          nextPostId: next ? next.id : null,
-        },
-      })
+    // ==== PAGES (WORDPRESS NATIVE) ====
+    graphql(
+      `
+        {
+          wpcontent {
+            pages {
+              edges {
+                node {
+                  id
+                  slug
+                  status
+                  template {
+                    templateName
+                  }
+                  title
+                  content
+                }
+              }
+            }
+          }
+        }
+      `
     )
-  )
-
-/**
- * This function creates all the individual blog pages in this site
- */
-async function createBlogPostArchive({ posts, gatsbyUtilities }) {
-  const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
-    {
-      wp {
-        readingSettings {
-          postsPerPage
-        }
-      }
-    }
-  `)
-
-  const { postsPerPage } = graphqlResult.data.wp.readingSettings
-
-  const postsChunkedIntoArchivePages = chunk(posts, postsPerPage)
-  const totalPages = postsChunkedIntoArchivePages.length
-
-  return Promise.all(
-    postsChunkedIntoArchivePages.map(async (_posts, index) => {
-      const pageNumber = index + 1
-
-      const getPagePath = page => {
-        if (page > 0 && page <= totalPages) {
-          // Since our homepage is our blog page
-          // we want the first page to be "/" and any additional pages
-          // to be numbered.
-          // "/blog/2" for example
-          return page === 1 ? `/` : `/blog/${page}`
+      .then((result) => {
+        if (result.errors) {
+          console.log(result.errors);
+          reject(result.errors);
         }
 
-        return null
-      }
+        // Create Page pages.
+        const aboutUsTemplate = path.resolve("./src/templates/aboutUs.js");
 
-      // createPage is an action passed to createPages
-      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-      await gatsbyUtilities.actions.createPage({
-        path: getPagePath(pageNumber),
+        const ourServicesTemplate = path.resolve("./src/templates/ourServices.js");
 
-        // use the blog post archive template as the page component
-        component: path.resolve(`./src/templates/blog-post-archive.js`),
+        const technologyTemplate = path.resolve("./src/templates/technology.js");
 
-        // `context` is available in the template as a prop and
-        // as a variable in GraphQL.
-        context: {
-          // the index of our loop is the offset of which posts we want to display
-          // so for page 1, 0 * 10 = 0 offset, for page 2, 1 * 10 = 10 posts offset,
-          // etc
-          offset: index * postsPerPage,
+        const contactTemplate = path.resolve("./src/templates/contact.js");
 
-          // We need to tell the template how many posts to display too
-          postsPerPage,
+        const privacyPolicyTemplate = path.resolve("./src/templates/privacyPolicy.js");
 
-          nextPagePath: getPagePath(pageNumber + 1),
-          previousPagePath: getPagePath(pageNumber - 1),
-        },
+        // Helper function to select template
+        const componentName = (templateName) => {
+          let component
+          switch (templateName) {
+            case "About Us":
+              component = aboutUsTemplate
+              break;
+            case "Our Services":
+              component = ourServicesTemplate
+              break;
+            case "Technology":
+              component = technologyTemplate
+              break;
+            case "Contact":
+              component = contactTemplate
+              break;
+            case "Privacy Policy":
+              component = privacyPolicyTemplate
+              break;
+          }
+          return component;
+        }
+
+        // We want to create a detailed page for each
+        // page node. We'll just use the WordPress Slug for the slug.
+        // The Page ID is prefixed with 'PAGE_'
+        _.each(result.data.wpcontent.pages.edges, (edge) => {
+          // Gatsby uses Redux to manage its internal state.
+          // Plugins and sites can use functions like "createPage"
+          // to interact with Gatsby.
+
+
+          createPage({
+            // Each page is required to have a `path` as well
+            // as a template component. The `context` is
+            // optional but is often necessary so the template
+            // can query data specific to each page.
+            path: `/${edge.node.slug}/`,
+            component: slash(edge.node.template && componentName(edge.node.template.templateName)),
+            context: edge.node,
+          });
+        });
       })
-    })
-  )
-}
+      // ==== END PAGES ====
 
-/**
- * This function queries Gatsby's GraphQL server and asks for
- * All WordPress blog posts. If there are any GraphQL error it throws an error
- * Otherwise it will return the posts 🙌
- *
- * We're passing in the utilities we got from createPages.
- * So see https://www.gatsbyjs.com/docs/node-apis/#createPages for more info!
- */
-async function getPosts({ graphql, reporter }) {
-  const graphqlResult = await graphql(/* GraphQL */ `
-    query WpPosts {
-      # Query all WordPress blog posts sorted by date
-      allWpPost(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
+      // ==== Service ====
+      .then(() => {
+        graphql(
+          `
+            {
+              wpcontent {
+                services {
+                  edges {
+                    node {
+                      content
+                      service {
+                        websiteUrl
+                      }
+                      title
+                      slug
+                      link
+                      featuredImage {
+                        node {
+                          sourceUrl
+                        }
+                      }
+                      excerpt
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then((result) => {
+          if (result.errors) {
+            console.log(result.errors);
+            reject(result.errors);
+          }
+          const serviceTemplate = path.resolve(
+            "./src/templates/service.js"
+          );
+          // We want to create a detailed page for each
+          // post node. We'll just use the WordPress Slug for the slug.
+          // The Post ID is prefixed with 'POST_'
+          _.each(result.data.wpcontent.services.edges, (edge) => {
+            createPage({
+              path: `/service/${edge.node.slug}/`,
+              component: slash(serviceTemplate),
+              context: edge.node,
+            });
+          });
+        });
+      })
+      // ==== END Service ====
+
+      // ==== Partner ====
+      .then(() => {
+        graphql(
+          `
+            {
+              wpcontent {
+                partners {
+                  edges {
+                    node {
+                      content
+                      partner {
+                        websiteUrl
+                      }
+                      title
+                      slug
+                      link
+                      featuredImage {
+                        node {
+                          sourceUrl
+                        }
+                      }
+                      excerpt
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then((result) => {
+          if (result.errors) {
+            console.log(result.errors);
+            reject(result.errors);
+          }
+          const partnerTemplate = path.resolve(
+            "./src/templates/partner.js"
+          );
+          // We want to create a detailed page for each
+          // post node. We'll just use the WordPress Slug for the slug.
+          // The Post ID is prefixed with 'POST_'
+          _.each(result.data.wpcontent.partners.edges, (edge) => {
+            createPage({
+              path: `/partner/${edge.node.slug}/`,
+              component: slash(partnerTemplate),
+              context: edge.node,
+            });
+          });
+        });
+      })
+      // ==== END Partner ====
+
+      // ==== BLOG POSTS ====
+      .then(() => {
+        graphql(
+          `
+            {
+              wpcontent {
+                posts {
+                  edges {
+                    node {
+                      excerpt
+                      id
+                      date
+                      title
+                      content
+                      slug
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then((result) => {
+          if (result.errors) {
+            console.log(result.errors);
+            reject(result.errors);
           }
 
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          post: node {
-            id
-            uri
-          }
+          const posts = result.data.wpcontent.posts.edges;
+          const postsPerPage = 2;
+          const numberOfPages = Math.ceil(posts.length / postsPerPage);
+          const blogPostListTemplate = path.resolve("./src/templates/blogPostList.js");
 
-          next {
-            id
-          }
-        }
-      }
-    }
-  `)
+          Array.from({ length: numberOfPages }).forEach((page, index) => {
+            createPage({
+              component: slash(blogPostListTemplate),
+              path: index === 0 ? "/blog" : `/blog/${index + 1}`,
+              context: {
+                posts: posts.slice(
+                  index * postsPerPage,
+                  index * postsPerPage + postsPerPage
+                ),
+                numberOfPages,
+                currentPage: index + 1,
+              },
+            });
+          });
 
-  if (graphqlResult.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      graphqlResult.errors
-    )
-    return
-  }
+          const pageTemplate = path.resolve("./src/templates/blogPost.js");
+          _.each(posts, (post) => {
+            createPage({
+              path: `/post/${post.node.slug}`,
+              component: slash(pageTemplate),
+              context: post.node,
+            });
+          });
 
-  return graphqlResult.data.allWpPost.edges
-}
+          resolve();
+        });
+      });
+    // ==== END POSTS ====
+  });
+};
