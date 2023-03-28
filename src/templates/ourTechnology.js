@@ -3,7 +3,8 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { CircleArrowDown } from '@styled-icons/fa-solid';
 import Layout from "../components/layout";
-import ServiceItems from "../components/serviceItems";
+import TechnologyItems from "../components/technologyItems";
+import PartnerItems from "../components/partnerItems";
 import Seo from "../components/seo";
 
 const OuterWrapper = styled.div`
@@ -41,21 +42,22 @@ const ScrollDown = styled(Link)``
 const ScrollIcon = styled(CircleArrowDown)`
   color: #fff;
 `
-const ourServices = ({ pageContext }) => (
+const ourTechnology = ({ pageContext }) => (
 
   <Layout>
     <Seo title={pageContext.title} />
     <div>
         <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
             <Wrapper>
-              <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
-              <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
-              <ScrollDown><ScrollIcon  size="80" title="Love" /></ScrollDown>
+                <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
+                <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
+                <ScrollDown><ScrollIcon  size="80" title="Love" /></ScrollDown>
             </Wrapper>
         </OuterWrapper>
     </div>
-    <ServiceItems />
+    <TechnologyItems />
+    <PartnerItems />
   </Layout>
 );
 
-export default ourServices;
+export default ourTechnology;

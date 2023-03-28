@@ -37,6 +37,11 @@ exports.createPages = ({ graphql, actions }) => {
                   template {
                     templateName
                   }
+                  featuredImage {
+                    node {
+                      sourceUrl
+                    }
+                  }
                   title
                   content
                 }
@@ -57,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         const ourServicesTemplate = path.resolve("./src/templates/ourServices.js");
 
-        const technologyTemplate = path.resolve("./src/templates/technology.js");
+        const ourTechnologyTemplate = path.resolve("./src/templates/ourTechnology.js");
 
         const contactTemplate = path.resolve("./src/templates/contact.js");
 
@@ -74,7 +79,7 @@ exports.createPages = ({ graphql, actions }) => {
               component = ourServicesTemplate
               break;
             case "Technology":
-              component = technologyTemplate
+              component = ourTechnologyTemplate
               break;
             case "Contact":
               component = contactTemplate
@@ -108,7 +113,7 @@ exports.createPages = ({ graphql, actions }) => {
       })
       // ==== END PAGES ====
 
-      // ==== Service ====
+      // ==== SERVICE ====
       .then(() => {
         graphql(
           `
@@ -156,9 +161,9 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
       })
-      // ==== END Service ====
+      // ==== END SERVICE ====
 
-      // ==== Partner ====
+      // ==== PARTNER ====
       .then(() => {
         graphql(
           `
@@ -206,7 +211,57 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
       })
-      // ==== END Partner ====
+      // ==== END PARTNER ====
+
+      // ==== TECHNOLOGY ====
+      .then(() => {
+        graphql(
+          `
+            {
+              wpcontent {
+                technologies {
+                  edges {
+                    node {
+                      content
+                      technology {
+                        websiteUrl
+                      }
+                      title
+                      slug
+                      link
+                      featuredImage {
+                        node {
+                          sourceUrl
+                        }
+                      }
+                      excerpt
+                    }
+                  }
+                }
+              }
+            }
+          `
+        ).then((result) => {
+          if (result.errors) {
+            console.log(result.errors);
+            reject(result.errors);
+          }
+          const technologyTemplate = path.resolve(
+            "./src/templates/technology.js"
+          );
+          // We want to create a detailed page for each
+          // post node. We'll just use the WordPress Slug for the slug.
+          // The Post ID is prefixed with 'POST_'
+          _.each(result.data.wpcontent.technologies.edges, (edge) => {
+            createPage({
+              path: `/technology/${edge.node.slug}/`,
+              component: slash(technologyTemplate),
+              context: edge.node,
+            });
+          });
+        });
+      })
+      // ==== END TECHNOLOGY ====
 
       // ==== BLOG POSTS ====
       .then(() => {
@@ -223,6 +278,11 @@ exports.createPages = ({ graphql, actions }) => {
                       title
                       content
                       slug
+                      featuredImage {
+                        node {
+                          sourceUrl
+                        }
+                      }
                     }
                   }
                 }

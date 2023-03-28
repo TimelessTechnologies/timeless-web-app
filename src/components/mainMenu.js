@@ -1,31 +1,49 @@
 import React from "react";
-import { graphql, StaticQuery, Link } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import styled from "styled-components";
 import SiteInfo from "./siteInfo";
 
 const MainMenuWrapper = styled.div`
   display: flex;
-  background-color: #212529;
 `;
 
 const MainMenuInner = styled.div`
-  max-width: 960px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  width: 960px;
+  width: 1200px;
   height: 100%;
 `;
 
-const MenuItem = styled(Link)`
-  color: white;
-  display: block;
-  padding: 16px 16px;
+const MenuItems = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  width: 1200px;
+  height: 100%;
+  align-self: center;
+  font-weight: 500;
 `;
 
-const MainMenu = () => (
-  <StaticQuery
-    query={graphql`
-      {
+const MenuItem = styled(Link)`
+  display: block;
+  padding: 16px 16px;
+  text-decoration: none;
+  color: black;
+`;
+
+const LoginInButton = styled.button`
+  border-radius: 80px;
+  width: 130px;
+  height: 40px;
+  font-family: 'Montserrat', sans-serif;
+  align-self: center;
+  border-width: 1px;
+`
+
+export default function MainMenu() {
+  const data = useStaticQuery(graphql`
+    query {
         wpcontent {
           menus(where: { slug: "main-menu" }) {
             nodes {
@@ -43,22 +61,22 @@ const MainMenu = () => (
           }
         }
       }
-    `}
-    render={(props) => {
-      return (
-        <MainMenuWrapper>
-          <MainMenuInner>
-            <SiteInfo />
-            {props.wpcontent.menus.nodes[0].menuItems.edges.map((item) => (
-              <MenuItem to={`${item.node.path}`} key={item.node.label}>
-                {item.node.label}
-              </MenuItem>
-            ))}
-          </MainMenuInner>
-        </MainMenuWrapper>
-      );
-    }}
-  />
-);
+    `)
 
-export default MainMenu;
+
+  return <MainMenuWrapper>
+    <MainMenuInner>
+      <div style={{ marginRight: '50px' }}><SiteInfo /></div>
+      <MenuItems>
+        {data.wpcontent.menus.nodes[0].menuItems.edges.map((item) => (
+          <MenuItem to={`${item.node.path}`} key={item.node.label}>
+            {item.node.label}
+          </MenuItem>
+        ))}
+      </MenuItems>
+      <LoginInButton>Login</LoginInButton>
+    </MainMenuInner>
+  </MainMenuWrapper>
+
+}
+

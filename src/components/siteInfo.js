@@ -1,37 +1,31 @@
 import React from "react";
-import { graphql, StaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 
 const SiteInfoWrapper = styled.div`
-  flex-grow: 1;
-  color: white;
   margin: auto 0;
 `;
 
-const SiteTitle = styled.div`
-  font-weight: bold;
-`;
+const Logo = styled.img`
+  height: 50px;
+  align-self: center;
+`
 
-const SiteInfo = () => (
-  <StaticQuery
-    query={graphql`
-      {
+export default function SiteInfo() {
+  const data = useStaticQuery(graphql`
+      query {
         wpcontent {
           generalSettings {
             title
-            url
-            description
           }
         }
       }
-    `}
-    render={(props) => (
-      <SiteInfoWrapper>
-        <SiteTitle>{props.wpcontent.generalSettings.title}</SiteTitle>
-        <div>{props.wpcontent.generalSettings.description}</div>
-      </SiteInfoWrapper>
-    )}
-  />
-);
+    `)
 
-export default SiteInfo;
+  return <SiteInfoWrapper>
+    <Logo
+      src="http://timeless.local/wp-content/uploads/2023/03/Logo-e1679823028440.png"
+      alt={data.wpcontent.generalSettings.title}
+    />
+  </SiteInfoWrapper>
+}
