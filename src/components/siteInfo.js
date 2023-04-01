@@ -25,7 +25,7 @@ export default function SiteInfo() {
   return <SiteInfoWrapper>
   <Link to="/about-us">
   <Logo
-      src="http://timeless.local/wp-content/uploads/2023/03/Logo-e1679823028440.png"
+      src="https://reviews.rulancreative.co.zw/wp-content/uploads/2023/03/Logo-e1679823028440.png"
       alt={data.wpcontent.generalSettings.title}
     />
   </Link>
