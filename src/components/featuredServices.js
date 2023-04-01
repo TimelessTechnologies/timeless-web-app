@@ -1,29 +1,63 @@
 import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import styled from "styled-components";
+import { device } from "../helpers/mediaQueries"
 
 const Wrapper = styled.div`
-  max-width: 1200px;
+  max-width: 100vw;
   margin: 0 auto;
-  display: flex;
-  width: 1200px;
+  display: grid;
+  width: 100vw;
   height: 100%;
+
+  @media ${device.sm} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    width: 1200px;
+    height: 100%;
+  }
 `
 
 const FeaturedPosts = styled.div`
+  height: fit-content;
+
+  @media ${device.sm} {
   height: 300px;
   background: #fff;
+  }
 `
 
 const ServiceItemsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
   position: absolute;
   zIndex: 3;
   margin-top: -100px;
+  display: contents;
+
+  @media ${device.sm} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    zIndex: 3;
+    margin-top: -100px;
+  }
+  
 `;
 
 const ServiceItem = styled.div`
+  width: 250px;
+  height: 250px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  border-radius: 20px;
+  background: #fff;
+  display: grid;
+  justify-self: center;
+
+@media ${device.sm} {
   width: 250px;
   height: 250px;
   padding: 20px;
@@ -33,9 +67,19 @@ const ServiceItem = styled.div`
   border-radius: 20px;
   background: #fff;
   display: grid;
+}
 `;
 
 const MoreServiceItems = styled(Link)`
+  padding: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  background: #1a4c1d;
+  display: grid;
+  text-decoration: none;
+  color: #fff;
+
+@media ${device.sm} {
   width: 230px;
   height: 230px;
   padding: 30px;
@@ -45,6 +89,7 @@ const MoreServiceItems = styled(Link)`
   display: grid;
   text-decoration: none;
   color: #fff;
+}
 `;
 
 const ServiceImage = styled.img`
@@ -67,19 +112,24 @@ export default function ServiceItems() {
   const data = useStaticQuery(graphql`
         query {
           wpcontent {
-            services {
-              edges {
-                node {
-                  content
-                  title
-                  slug
-                  link
-                  featuredImage {
-                    node {
-                      sourceUrl
+            tag(id: "dGVybToxOTg=") {
+              contentNodes(first: 3) {
+                edges {
+                  node {
+                    id
+                    ... on WPGraphQL_Service {
+                      id
+                      title
+                      featuredImage {
+                        node {
+                          sourceUrl
+                          link
+                        }
+                      }
+                      excerpt
+                      slug
                     }
                   }
-                  excerpt
                 }
               }
             }
@@ -90,7 +140,7 @@ export default function ServiceItems() {
   return <FeaturedPosts>
     <Wrapper>
       <ServiceItemsWrapper>
-        {data.wpcontent.services.edges.map((serviceItem) => (
+        {data.wpcontent.tag.contentNodes.edges.map((serviceItem) => (
           <ServiceItem key={serviceItem.node.slug}>
             <ServiceImage
               src={serviceItem.node.featuredImage.node.sourceUrl}

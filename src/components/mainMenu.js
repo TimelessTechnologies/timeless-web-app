@@ -2,9 +2,14 @@ import React from "react";
 import { graphql, useStaticQuery, Link } from "gatsby";
 import styled from "styled-components";
 import SiteInfo from "./siteInfo";
+import { device } from "../helpers/mediaQueries"
 
 const MainMenuWrapper = styled.div`
-  display: flex;
+  display: none;
+
+  @media ${device.sm} {
+    display: flex;
+  }
 `;
 
 const MainMenuInner = styled.div`

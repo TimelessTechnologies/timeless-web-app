@@ -1,6 +1,8 @@
 import React from "react";
 import MainMenu from "./mainMenu";
+import MobileMenu from "./mobileMenu";
 import Footer from "./footer";
+import { device } from "../helpers/mediaQueries"
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
@@ -17,13 +19,18 @@ const LayoutWrapper = styled.div`
 `;
 
 const BodyWrapper =styled.div`
+  padding-top: 0px;
+
+@media ${device.sm} {
   padding-top: 100px;
+}
 `
 
 const Layout = ({ children }) => (
   <BodyWrapper>
     <GlobalStyles />
     <MainMenu />
+    <MobileMenu />
     <LayoutWrapper>{children}</LayoutWrapper>
     <Footer />
   </BodyWrapper>

@@ -298,11 +298,11 @@ exports.createPages = ({ graphql, actions }) => {
           const posts = result.data.wpcontent.posts.edges;
           const postsPerPage = 2;
           const numberOfPages = Math.ceil(posts.length / postsPerPage);
-          const blogPostListTemplate = path.resolve("./src/templates/blogPostList.js");
+          const blogTemplate = path.resolve("./src/templates/blog.js");
 
           Array.from({ length: numberOfPages }).forEach((page, index) => {
             createPage({
-              component: slash(blogPostListTemplate),
+              component: slash(blogTemplate),
               path: index === 0 ? "/blog" : `/blog/${index + 1}`,
               context: {
                 posts: posts.slice(
