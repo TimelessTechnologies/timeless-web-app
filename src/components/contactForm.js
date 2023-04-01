@@ -4,7 +4,6 @@ import { device } from "../helpers/mediaQueries";
 
 const Wrapper = styled.div`
     display: grid;
-    padding: 20px;
   
   @media ${device.sm} {
         display: grid;

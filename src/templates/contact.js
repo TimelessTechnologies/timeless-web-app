@@ -24,8 +24,10 @@ const Background = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+  padding: 20px;
   
   @media ${device.sm} {
+    padding: 0px;
     background-image: url(${props => props.featuredImage});
     background-repeat: no-repeat;
     background-size: 100vw 100vh;
