@@ -8,43 +8,65 @@ const MainMenuWrapper = styled.div`
   display: none;
 
   @media ${device.sm} {
+    display: none;
+  }
+
+  @media ${device.lg} {
+    display: flex;
+  }
+
+  @media ${device.xl} {
     display: flex;
   }
 `;
 
 const MainMenuInner = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  width: 1200px;
   height: 100%;
+
+  @media ${device.xl} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    width: 1200px;
+    height: 100%;
+  }
 `;
 
 const MenuItems = styled.div`
-  max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  width: 1200px;
   height: 100%;
   align-self: center;
   font-weight: 500;
+
+  @media ${device.xl} {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    width: 1200px;
+    height: 100%;
+    align-self: center;
+    font-weight: 500;
+  }
 `;
 
 const MenuItem = styled(Link)`
   display: block;
-  padding: 16px 16px;
+  padding: 8px 8px;
   text-decoration: none;
+  text-align: center;
   color: black;
-`;
 
-const LoginInButton = styled.button`
-  border-radius: 80px;
-  width: 130px;
-  height: 40px;
-  font-family: 'Montserrat', sans-serif;
-  align-self: center;
-  border-width: 1px;
-`
+  @media ${device.xl} {
+    display: block;
+    padding: 16px 16px;
+    text-decoration: none;
+  text-align: center;
+    color: black;
+  }
+`;
 
 export default function MainMenu() {
   const data = useStaticQuery(graphql`
@@ -71,7 +93,7 @@ export default function MainMenu() {
 
   return <MainMenuWrapper>
     <MainMenuInner>
-      <div style={{ marginRight: '50px' }}><SiteInfo /></div>
+      <div style={{ marginRight: '20px', marginLeft: '30px' }}><SiteInfo /></div>
       <MenuItems>
         {data.wpcontent.menus.nodes[0].menuItems.edges.map((item) => (
           <MenuItem to={`${item.node.path}`} key={item.node.label}>
@@ -79,7 +101,6 @@ export default function MainMenu() {
           </MenuItem>
         ))}
       </MenuItems>
-      <LoginInButton>Login</LoginInButton>
     </MainMenuInner>
   </MainMenuWrapper>
 

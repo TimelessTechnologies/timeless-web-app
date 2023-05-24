@@ -10,7 +10,22 @@ const Wrapper = styled.div`
   height: 100%;
   padding-top: 50px;
   padding-bottom: 100px;
-  @media ${device.sm} {
+
+  @media ${device.sm} {  
+    margin: 0 auto;
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 100px;
+  };
+
+  @media ${device.lg} {
+    margin: 0 auto;
+    height: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  };
+
+  @media ${device.xl} {
     max-width: 1200px;
     margin: 0 auto;
     width: 1200px;
@@ -68,6 +83,7 @@ const Card = styled.div`
     &:hover {
       box-shadow: 0 12px 20px 0 rgba(0,0,0,0.2);
     };
+    height: fit-content;
   };
 `
 

@@ -4,6 +4,7 @@ import FeaturedServices from "../components/featuredServices"
 import TimelessTechnologyPartner from "../components/timelessTechnologyPartner";
 import LatestNews from '../components/latestNews';
 import Seo from "../components/seo";
+import Partners from "../components/partnerItems"
 import Landing from "../components/landing";
 
 export default function AboutUs({ pageContext }) {
@@ -17,6 +18,8 @@ export default function AboutUs({ pageContext }) {
     <TimelessTechnologyPartner />
 
     <LatestNews />
+
+    <Partners />
 
   </Layout>
 };

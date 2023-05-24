@@ -21,9 +21,13 @@ const LayoutWrapper = styled.div`
 const BodyWrapper =styled.div`
   padding-top: 0px;
 
-@media ${device.sm} {
-  padding-top: 100px;
-}
+  @media ${device.sm} {
+    padding-top: 0px;
+  }
+
+  @media ${device.lg} {
+    padding-top: 100px;
+  }
 `
 
 const Layout = ({ children }) => (

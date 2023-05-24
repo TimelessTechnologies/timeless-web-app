@@ -6,20 +6,20 @@ import { device } from "../helpers/mediaQueries";
 
 const Wrapper = styled.div`
     display: grid;
+    margin: 10px;
   
-    @media ${device.sm} {
+  @media ${device.sm} {
         display: grid;
     }
-
-    @media ${device.lg} {
+  
+  @media ${device.lg} {
         display: grid;
-        padding-right: 50px;
     }
-
-    @media ${device.xl} {
+  
+  @media ${device.xl} {
         display: grid;
         padding-right: 50px;
-        width: 550px;
+        justify-content: center;
     }
 `
 
@@ -110,6 +110,7 @@ const SendButton = styled.button`
     background: rgb(255,224,0);
     margin-top: 40px;
     background: linear-gradient(90deg, rgba(255,224,0,1) 13%, rgba(29,89,32,1) 100%);
+    width: 100%;
   
     @media ${device.sm} {
         border-radius: 80px;
@@ -125,7 +126,6 @@ const SendButton = styled.button`
     };
     @media ${device.lg} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -138,7 +138,6 @@ const SendButton = styled.button`
   };
     @media ${device.xl} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -165,20 +164,21 @@ const Form = styled.form`
     }
 `
 
-
-const MESSAGE_MUTATION = gql`
-  mutation CreateMessageMutation(
+const QUOTE_MUTATION = gql`
+  mutation CreateQuoteMutation(
     $clientMutationId: String!,
     $name: String!,
     $email: String!,
-    $message: String!
+    $message: String!,
+    $productservice: String!,
     ) {
-    newContactMessage(
+        newQuoteRequest(
         input: {
             clientMutationId: $clientMutationId,
             name: $name,
             email: $email,
-            message: $message
+            message: $message,
+            productservice: $productservice,
         }
     ) {
         success
@@ -187,25 +187,26 @@ const MESSAGE_MUTATION = gql`
   }
 `
 
-export default function ContactForm() {
-
+const QuoteRequestForm = (props) => {
     const [nameValue, setNameValue] = useState('')
     const [emailValue, setEmailValue] = useState('')
     const [messageValue, setMessageValue] = useState('')
+    const [productServiceValue, setProductServiceValue] = useState(props.service)
 
     return <Wrapper>
-        <Mutation mutation={MESSAGE_MUTATION}>
-            {(newContactMessage, { loading, error, data }) => (
+        <Mutation mutation={QUOTE_MUTATION}>
+            {(newQuoteRequest, { loading, error, data }) => (
                 <div>
                     <Form
                         onSubmit={async event => {
                             event.preventDefault()
-                            newContactMessage({
+                            newQuoteRequest({
                                 variables: {
                                     clientMutationId: 'example',
                                     name: nameValue,
                                     email: emailValue,
                                     message: messageValue,
+                                    productservice: productServiceValue,
                                 }
                             })
                         }}>
@@ -232,12 +233,19 @@ export default function ContactForm() {
                                 setMessageValue(event.target.value)
                             }}
                         />
+                        <Input
+                            type="text"
+                            placeholder="Product/Service"
+                            value={productServiceValue}
+                            onChange={event => {
+                                setProductServiceValue(event.target.value)
+                            }} />
                         <SendButton type="submit">Send</SendButton>
                     </Form>
                     <div>
                         {loading && <p>Loading....</p>}
                         {error && (<p>An error occured, please try again later....</p>)}
-                        {data && <p>Message Sent</p>}
+                        {data && <p>Quote Request Sent</p>}
                     </div>
                 </div>
 
@@ -246,3 +254,5 @@ export default function ContactForm() {
         </Mutation>
     </Wrapper>
 }
+
+export default QuoteRequestForm;

@@ -16,7 +16,20 @@ const InnerWrapper = styled.div`
    color: #fff;
    display: grid;
 
-  @media ${device.sm} {
+   @media ${device.sm} {
+    paddingBottom: 80px;
+    paddingTop: 80px;
+    width: 700px;
+    color: #fff;
+  }
+
+  @media ${device.lg} {
+    paddingBottom: 80px;
+    paddingTop: 80px;
+    color: #fff;
+  }
+
+  @media ${device.xl} {
     paddingBottom: 80px;
     paddingTop: 80px;
     width: 700px;
@@ -32,12 +45,26 @@ const Wrapper = styled.div`
   justify-content: space-between;
 
   @media ${device.sm} {
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  @media ${device.lg} {
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+  }
+
+  @media ${device.xl} {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     width: 1200px;
     height: 100%;
-    justify-content: space-between;
+    justify-content: center;
   }
 `
 
@@ -61,11 +88,15 @@ const PartnershipHeader = styled.h1`
   font-wight: 900;
   font-size: 20px;
   color: white;
+
   @media ${device.sm} {
-  font-wight: 900;
-  font-size: 50px;
-  color: white;
+    font-wight: 900;
+    font-size: 50px;
+    color: white;
   }
+`
+const StyledLink = styled(Link)`
+  display: contents;
 `
 
 export default function TimelessTechnologyPartner() {
@@ -93,9 +124,9 @@ export default function TimelessTechnologyPartner() {
                 <InnerWrapper>
                     <PartnershipHeader dangerouslySetInnerHTML={{ __html: data.wpcontent.post.title }} />
                     <div dangerouslySetInnerHTML={{ __html: data.wpcontent.post.content }} />
-                    <Link to={`/post/${data.wpcontent.post.slug}`}>
+                    <StyledLink to={`/timeless-technology`}>
                         <LearnMoreButton>Learn More</LearnMoreButton>
-                    </Link>
+                    </StyledLink>
                 </InnerWrapper>
             </Wrapper>
     </OuterWrapper>

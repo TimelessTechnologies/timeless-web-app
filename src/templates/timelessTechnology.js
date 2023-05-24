@@ -23,7 +23,7 @@ const OuterWrapper = styled.div`
   background-repeat: no-repeat;
   background-size: 100vw;
   margin-top: 40px;
-  height: 100vh;
+  height: 70vh;
   }
 `
 
@@ -62,15 +62,12 @@ const Heading = styled.h1`
 
 const Description = styled.div`
   font-weight: 400;
-  color: #fff;
   display: grid;
   margin: 10px;
   font-size: 15px;
 
   @media ${device.sm} {
-    width: 500px;
     font-weight: 400;
-    color: #fff;
   }
 `
 
@@ -109,15 +106,15 @@ export default function OurTechnology({ pageContext }) {
   return <Layout>
     <Seo title={pageContext.title} />
     <div>
-        <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
-            <Wrapper>
-                <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
-                <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
-                <ScrollDown onClick={scrollingTop}><ScrollIcon title="Love" /></ScrollDown>
-            </Wrapper>
-        </OuterWrapper>
+      <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
+        <Wrapper>
+          <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
+          <ScrollDown onClick={scrollingTop}><ScrollIcon title="Love" /></ScrollDown>
+        </Wrapper>
+      </OuterWrapper>
     </div>
-    <div ref={targetElement}><TechnologyItems /></div>
-    <PartnerItems />
+    <div ref={targetElement}>
+      <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
+    </div>
   </Layout>
 };

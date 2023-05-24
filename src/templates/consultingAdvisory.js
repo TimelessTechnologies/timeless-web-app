@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import { CircleArrowDown } from '@styled-icons/fa-solid';
 import Layout from "../components/layout";
+import ConsulatancyServices from "../components/consultancyServices";
 import Seo from "../components/seo";
 import { device } from "../helpers/mediaQueries";
 
@@ -11,6 +13,7 @@ const OuterWrapper = styled.div`
   background-size: cover;
   background-position: center;
   margin-top: 20px;
+  height: 40vh;
   background-color: rgba(35,77,36,.5);
   background-blend-mode: multiply;
 
@@ -21,6 +24,7 @@ const OuterWrapper = styled.div`
     background-size: cover;
     background-position: center;
     margin-top: 20px;
+    height: 40vh;
     background-color: rgba(35,77,36,.5);
     background-blend-mode: multiply;
   }
@@ -30,6 +34,7 @@ const OuterWrapper = styled.div`
     background-repeat: no-repeat;
     background-size: 100vw;
     margin-top: 40px;
+    height: 70vh;
     background-color: rgba(35,77,36,.5);
     background-blend-mode: multiply;
     justify-content: center;
@@ -133,18 +138,71 @@ const Description = styled.div`
 }
 `
 
+const ScrollDown = styled.button`
+  border: none;
+  width: 20px;
+  background: none;
+  margin: 10px;
 
+@media ${device.sm} {
+  border: none;
+  width: 20px;
+  background: none;
+  margin: 10px;
+}
+
+@media ${device.lg} {
+  border: none;
+  width: fit-content;
+  background: none;
+}
+
+@media ${device.xl} {
+  border: none;
+  width: fit-content;
+  background: none;
+}
+`
+
+const ScrollIcon = styled(CircleArrowDown)`
+  color: #fff;
+  width: 40px;
+
+  @media ${device.sm} {
+  color: #fff;
+  width: 40px;
+  }
+  @media ${device.lg} {
+    color: #fff;
+    width: 80px;
+  }
+  @media ${device.xl} {
+    color: #fff;
+    width: 80px;
+  }
+`
 export default function OurServices({ pageContext }) {
+  const targetElement = useRef();
+  const scrollingTop = (event) => {
+    const elmnt = targetElement;
+    elmnt.current.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "start"
+    });
+  };
 
   return (
     <Layout>
       <Seo title={pageContext.title} />
-      <OuterWrapper>
+      <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
         <Wrapper>
           <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
-          <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} ></Description>
+          <Description>{ pageContext.content }</Description>
+          <ScrollDown onClick={scrollingTop}><ScrollIcon title="Love" /></ScrollDown>
         </Wrapper>
       </OuterWrapper>
+      <div ref={targetElement}><ConsulatancyServices /></div>
     </Layout>
   )
 };

@@ -6,20 +6,20 @@ import { device } from "../helpers/mediaQueries";
 
 const Wrapper = styled.div`
     display: grid;
+    margin: 10px;
   
-    @media ${device.sm} {
+  @media ${device.sm} {
         display: grid;
     }
-
-    @media ${device.lg} {
+  
+  @media ${device.lg} {
         display: grid;
-        padding-right: 50px;
     }
-
-    @media ${device.xl} {
+  
+  @media ${device.xl} {
         display: grid;
         padding-right: 50px;
-        width: 550px;
+        justify-content: center;
     }
 `
 
@@ -39,7 +39,7 @@ const Input = styled.input`
         font-size: 15px;
         font-weight: 400;
     };
-    @media ${device.lg} {
+  @media ${device.lg} {
         border: none;
         border-radius: 0px;
         margin-bottom: 20px;
@@ -47,55 +47,13 @@ const Input = styled.input`
         font-size: 25px;
         font-weight: 400;
     };
-    @media ${device.xl} {
+  @media ${device.xl} {
         border: none;
         border-radius: 0px;
         margin-bottom: 20px;
         padding: 15px;
         font-size: 25px;
         font-weight: 400;
-    };
-`
-
-const Textarea = styled.textarea`
-    border: none;
-    border-radius: 0px;
-    margin-bottom: 20px;
-    padding: 15px;
-    font-size: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    resize: none;
-  
-    @media ${device.sm} {
-        border: none;
-        border-radius: 0px;
-        margin-bottom: 20px;
-        padding: 15px;
-        font-size: 15px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        resize: none;
-    };
-    @media ${device.lg} {
-        border: none;
-        border-radius: 0px;
-        margin-bottom: 20px;
-        padding: 15px;
-        font-size: 25px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        resize: none;
-    };
-    @media ${device.xl} {
-        border: none;
-        border-radius: 0px;
-        margin-bottom: 20px;
-        padding: 15px;
-        font-size: 25px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        resize: none;
     };
 `
 
@@ -110,6 +68,7 @@ const SendButton = styled.button`
     background: rgb(255,224,0);
     margin-top: 40px;
     background: linear-gradient(90deg, rgba(255,224,0,1) 13%, rgba(29,89,32,1) 100%);
+    width: 100%;
   
     @media ${device.sm} {
         border-radius: 80px;
@@ -125,7 +84,6 @@ const SendButton = styled.button`
     };
     @media ${device.lg} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -138,7 +96,6 @@ const SendButton = styled.button`
   };
     @media ${device.xl} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -165,49 +122,59 @@ const Form = styled.form`
     }
 `
 
-
-const MESSAGE_MUTATION = gql`
-  mutation CreateMessageMutation(
+const CAREER_APPLICATION_MUTATION = gql`
+  mutation CreateCareerMutation(
     $clientMutationId: String!,
     $name: String!,
     $email: String!,
-    $message: String!
+    $apply_for: String!,
+    $upload_cv: Upload!
     ) {
-    newContactMessage(
+    newCareerApplication(
         input: {
             clientMutationId: $clientMutationId,
             name: $name,
             email: $email,
-            message: $message
-        }
-    ) {
+            apply_for: $apply_for,
+            upload_cv: $upload_cv,
+        }) {
         success
         data
     }
   }
 `
 
-export default function ContactForm() {
+export default function CareerApplicationForm() {
 
     const [nameValue, setNameValue] = useState('')
     const [emailValue, setEmailValue] = useState('')
-    const [messageValue, setMessageValue] = useState('')
+    const [applyForValue, setApplyForValue] = useState('')
+    const [uploadCvValue, setUploadCvValue] = useState(null)
+
 
     return <Wrapper>
-        <Mutation mutation={MESSAGE_MUTATION}>
-            {(newContactMessage, { loading, error, data }) => (
+        <Mutation mutation={CAREER_APPLICATION_MUTATION} fetchPolicy="no-cache">
+            {(newCareerApplication, { loading, error, data }) => (
                 <div>
                     <Form
                         onSubmit={async event => {
                             event.preventDefault()
-                            newContactMessage({
-                                variables: {
-                                    clientMutationId: 'example',
-                                    name: nameValue,
-                                    email: emailValue,
-                                    message: messageValue,
-                                }
-                            })
+                            try {
+                                await newCareerApplication({
+                                    variables: {
+                                        clientMutationId: 'example',
+                                        name: nameValue,
+                                        email: emailValue,
+                                        apply_for: applyForValue,
+                                        upload_cv: uploadCvValue,
+                                    },
+                                    fetchPolicy: 'no-cache',
+                                    context: {
+                                        useMultipart: true,
+                                        hasUpload: true
+                                    }
+                                })
+                            } catch (e) { console.log({ e }) }
                         }}>
                         <Input
                             type="text"
@@ -223,13 +190,20 @@ export default function ContactForm() {
                             onChange={event => {
                                 setEmailValue(event.target.value)
                             }} />
-                        <Textarea
-                            placeholder="Message"
-                            rows="4"
-                            cols="50"
-                            value={messageValue}
+                        <Input
+                            type="text"
+                            placeholder="Apply For"
+                            value={applyForValue}
                             onChange={event => {
-                                setMessageValue(event.target.value)
+                                setApplyForValue(event.target.value)
+                            }}
+                        />
+                        <Input
+                            type="file"
+                            required
+                            placeholder="Upload CV"
+                            onChange={event => {
+                                setUploadCvValue(event.target.files[0]);
                             }}
                         />
                         <SendButton type="submit">Send</SendButton>
@@ -237,7 +211,7 @@ export default function ContactForm() {
                     <div>
                         {loading && <p>Loading....</p>}
                         {error && (<p>An error occured, please try again later....</p>)}
-                        {data && <p>Message Sent</p>}
+                        {data && <p>Application Sent</p>}
                     </div>
                 </div>
 

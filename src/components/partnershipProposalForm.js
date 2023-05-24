@@ -6,20 +6,20 @@ import { device } from "../helpers/mediaQueries";
 
 const Wrapper = styled.div`
     display: grid;
+    margin: 10px;
   
-    @media ${device.sm} {
+  @media ${device.sm} {
         display: grid;
     }
-
-    @media ${device.lg} {
+  
+  @media ${device.lg} {
         display: grid;
-        padding-right: 50px;
     }
-
-    @media ${device.xl} {
+  
+  @media ${device.xl} {
         display: grid;
         padding-right: 50px;
-        width: 550px;
+        justify-content: center;
     }
 `
 
@@ -110,6 +110,7 @@ const SendButton = styled.button`
     background: rgb(255,224,0);
     margin-top: 40px;
     background: linear-gradient(90deg, rgba(255,224,0,1) 13%, rgba(29,89,32,1) 100%);
+    width: 100%;
   
     @media ${device.sm} {
         border-radius: 80px;
@@ -125,7 +126,6 @@ const SendButton = styled.button`
     };
     @media ${device.lg} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -138,7 +138,6 @@ const SendButton = styled.button`
   };
     @media ${device.xl} {
         border-radius: 80px;
-        width: 230px;
         height: 55px;
         font-size: 20px;
         font-family: 'Montserrat', sans-serif;
@@ -165,47 +164,57 @@ const Form = styled.form`
     }
 `
 
-
-const MESSAGE_MUTATION = gql`
-  mutation CreateMessageMutation(
+const PARTNERSHIP_MUTATION = gql`
+  mutation CreatePartnershipMutation(
     $clientMutationId: String!,
     $name: String!,
     $email: String!,
-    $message: String!
+    $message: String!,
+    $business_name: String!,
+    $mobile_number: String!,
+    $office_number: String!,
     ) {
-    newContactMessage(
+    newPartnershipProposal(
         input: {
             clientMutationId: $clientMutationId,
             name: $name,
             email: $email,
-            message: $message
-        }
-    ) {
+            message: $message,
+            business_name: $business_name,
+            mobile_number: $mobile_number,
+            office_number: $office_number,
+        }) {
         success
         data
     }
   }
 `
 
-export default function ContactForm() {
+export default function PartnershipProposalForm() {
 
     const [nameValue, setNameValue] = useState('')
     const [emailValue, setEmailValue] = useState('')
     const [messageValue, setMessageValue] = useState('')
+    const [businessNameValue, setBusinessNameValue] = useState('')
+    const [mobileNumberValue, setMobileNumberValue] = useState('')
+    const [officeNumberValue, setOfficeNumberValue] = useState('')
 
     return <Wrapper>
-        <Mutation mutation={MESSAGE_MUTATION}>
-            {(newContactMessage, { loading, error, data }) => (
+        <Mutation mutation={PARTNERSHIP_MUTATION}>
+            {(newPartnershipProposal, { loading, error, data }) => (
                 <div>
                     <Form
                         onSubmit={async event => {
                             event.preventDefault()
-                            newContactMessage({
+                            newPartnershipProposal({
                                 variables: {
                                     clientMutationId: 'example',
                                     name: nameValue,
                                     email: emailValue,
                                     message: messageValue,
+                                    business_name: businessNameValue,
+                                    mobile_number: mobileNumberValue,
+                                    office_number: officeNumberValue,
                                 }
                             })
                         }}>
@@ -232,12 +241,33 @@ export default function ContactForm() {
                                 setMessageValue(event.target.value)
                             }}
                         />
+                        <Input
+                            type="text"
+                            placeholder="Business Name"
+                            value={businessNameValue}
+                            onChange={event => {
+                                setBusinessNameValue(event.target.value)
+                            }} />
+                        <Input
+                            type="text"
+                            placeholder="Mobile Number"
+                            value={mobileNumberValue}
+                            onChange={event => {
+                                setMobileNumberValue(event.target.value)
+                            }} />
+                        <Input
+                            type="text"
+                            placeholder="Office Number"
+                            value={officeNumberValue}
+                            onChange={event => {
+                                setOfficeNumberValue(event.target.value)
+                            }} />
                         <SendButton type="submit">Send</SendButton>
                     </Form>
                     <div>
                         {loading && <p>Loading....</p>}
                         {error && (<p>An error occured, please try again later....</p>)}
-                        {data && <p>Message Sent</p>}
+                        {data && <p>Proposal Sent</p>}
                     </div>
                 </div>
 

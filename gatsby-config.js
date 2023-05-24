@@ -48,7 +48,7 @@ module.exports = {
       options: {
         typeName: "WPGraphQL",
         fieldName: "wpcontent",
-        url: process.env.WPGRAPHQL_URL || `https://reviews.rulancreative.co.zw/graphql`,
+        url: process.env.WPGRAPHQL_URL || `https://reviews.rulancreative.co.zw/wp-admin/graphql`,
       },
     },
     `gatsby-plugin-sharp`,

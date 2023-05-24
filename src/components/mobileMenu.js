@@ -35,6 +35,35 @@ const ListItem = styled.li`
   font-weight: 600;
 `
 
+const DropDownButtonIconClosed = styled(Close)`
+  color: #1a4c1d;
+  width: 30px;
+`
+
+const DropDownButtonIconOpen = styled(Bars)`
+  color: #1a4c1d;
+  width: 30px;
+`
+
+const MenuItem = styled(Link)`
+  text-decoration: none;
+  color: black;
+`
+
+const Wrapper = styled.div`
+  display: block;
+  height: 94px;
+
+  @media ${device.sm} {
+    display: block;
+    height: 94px;
+  }
+
+  @media ${device.lg} {
+    display: none;
+  }
+`
+
 const DropdownMenu = ({ trigger, menu }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -61,29 +90,6 @@ const DropdownMenu = ({ trigger, menu }) => {
   );
 };
 
-const DropDownButtonIconClosed = styled(Close)`
-  color: #1a4c1d;
-  width: 30px;
-`
-
-const DropDownButtonIconOpen = styled(Bars)`
-  color: #1a4c1d;
-  width: 30px;
-`
-
-const MenuItem = styled(Link)`
-  text-decoration: none;
-  color: black;
-`
-
-const Wrapper = styled.div`
-  display: block;
-  height: 94px;
-
-@media ${device.sm} {
-  display: none;
-}
-`
 
 const MobileMenu = () => {
   const data = useStaticQuery(graphql`

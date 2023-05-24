@@ -11,27 +11,36 @@ const Wrapper = styled.div`
     padding-top: 50px;  
     justify-content: center;
 
-  @media ${device.sm} {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 1200px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 200px;
-    padding-top: 150px;  
-  }
-`
+    @media ${device.sm} {
+      padding: 30px;
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      padding-top: 50px;  
+    }
 
-const MainService = styled.div`
-  display: none;
+    @media ${device.lg} {
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 200px;
+      padding-top: 150px;  
+    }
 
-  @media ${device.sm} {
-    color: #426420;
-    font-weight: 400;
-    width: 500px;
-    display: block;
-  }
+    @media ${device.xl} {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 1200px;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 200px;
+      padding-top: 150px;  
+    }
 `
 
 const TagLine = styled.h1`
@@ -43,6 +52,12 @@ const TagLine = styled.h1`
   @media ${device.sm} {
   font-wight: 900;
   font-size: 50px;
+  text-align: left;
+  }
+
+  @media ${device.lg} {
+  font-wight: 900;
+  font-size: 50px;
   width: 500px;
   text-align: left;
   }
@@ -52,6 +67,9 @@ const InnerWrapper = styled.div`
   width: 300px;
 
   @media ${device.sm} {
+  }
+
+  @media ${device.lg} {
     width: 500px;
   }
 `
@@ -63,6 +81,11 @@ const TagLineExpanded = styled.div`
   text-align: center;
 
 @media ${device.sm} {
+  font-weight: 200;
+  text-align: left;
+}
+
+@media ${device.lg} {
   width: 500px;
   font-weight: 200;
   margin-bottom: 200px;
@@ -74,7 +97,11 @@ const SplashImage = styled.img`
   height: 350px;
   justify-self: center;
 
-@media ${device.sm} {
+  @media ${device.sm} {
+  height: 400px;
+}
+
+@media ${device.lg} {
   height: 500px;
 }
 `
@@ -88,6 +115,13 @@ const ScrollDown = styled.button`
 @media ${device.sm} {
   border: none;
   position: absolute;
+  display: contents;
+  bottom: 0px;
+}
+
+@media ${device.lg} {
+  border: none;
+  position: absolute;
   bottom: 50px;
 }
 `
@@ -97,6 +131,10 @@ const ScrollIcon = styled(CircleArrowDown)`
   width: 40px;
 
   @media ${device.sm} {
+    color:  #1a4c1d;
+    width: 80px;
+  }
+  @media ${device.lg} {
     color:  #1a4c1d;
     width: 80px;
   }
@@ -134,8 +172,6 @@ export default function Landing() {
 
   return <Wrapper>
     <InnerWrapper>
-
-      <MainService>* FIBRE INTERNET FOR THE HOME</MainService>
 
       <TagLine>{data.wpcontent.post.title}</TagLine>
 

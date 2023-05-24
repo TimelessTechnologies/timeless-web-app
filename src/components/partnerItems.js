@@ -14,11 +14,29 @@ const Wrapper = styled.div`
     display: grid;
     justify-content: start;
     flex-wrap: wrap;
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+  };
+
+  @media ${device.lg} {
+    display: grid;
+    justify-content: start;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 0 auto;
+    height: 100%;
+  }
+
+  @media ${device.xl} {
+    display: grid;
+    justify-content: start;
+    flex-wrap: wrap;
     max-width: 1200px;
     margin: 0 auto;
     width: 1200px;
     height: 100%;
-  };
+  }
 `
 
 const PartnerItemsWrapper = styled.div`
@@ -49,7 +67,6 @@ const OutterWrapper = styled(Link)`
 
   @media ${device.sm} {
     text-decoration: none;
-    display: flex;
     border: 0px;
     &:hover {
       background: rgb(255, 255, 255, 0.6);
@@ -67,6 +84,24 @@ const PartnerItem = styled.div`
   text-align: center;
   
   @media ${device.sm} {
+    width: 150px;
+    padding: 16px;
+    margin: 16px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  };
+  
+  @media ${device.lg} {
+    width: 200px;
+    padding: 16px;
+    margin: 16px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+  };
+  
+  @media ${device.xl} {
     width: 250px;
     padding: 16px;
     margin: 16px;
@@ -97,6 +132,22 @@ const Header = styled.div`
     font-size: 50px;
     font-weight: 700;
     margin-top: 50px;
+    text-align: center;
+    width: 100%;
+  };
+
+  @media ${device.lg} {
+    color: #1a4c1d;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 50px;
+  };
+
+  @media ${device.xl} {
+    color: #1a4c1d;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 50px;
   };
 `;
 
@@ -114,13 +165,15 @@ export default function PartnerItems() {
                   content
                   title
                   slug
-                  link
                   featuredImage {
                     node {
                       sourceUrl
                     }
                   }
                   excerpt
+                  partner {
+                    websiteUrl
+                  }
                 }
               }
             }
@@ -131,11 +184,11 @@ export default function PartnerItems() {
   return <Wrapper>
 
     <Header>
-      Our Parnters and Brands
+      Our Partners and Brands
     </Header>
     <PartnerItemsWrapper>
       {data.wpcontent.partners.edges.map((partnerItem) => (
-        <OutterWrapper key={partnerItem.node.slug} to={`/partner/${partnerItem.node.slug}`}>
+        <OutterWrapper key={partnerItem.node.slug} href={`https://${partnerItem.node.partner.websiteUrl}`}>
           <PartnerItem>
             <PartnerImage
               src={partnerItem.node.featuredImage.node.sourceUrl}

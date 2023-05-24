@@ -12,6 +12,17 @@ const Wrapper = styled.div`
   color: #fff;
   
   @media ${device.sm} {
+    margin: 0 auto;
+    color: #fff;
+  };
+
+  @media ${device.lg} {
+    margin: 0 auto;
+    height: 100%;
+    color: #fff;
+  };
+
+  @media ${device.xl} {
     max-width: 1200px;
     margin: 0 auto;
     width: 1200px;
@@ -27,6 +38,22 @@ const Background = styled.div`
   padding: 20px;
   
   @media ${device.sm} {
+    background-image: url(${props => props.featuredImage});
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding: 20px;
+  };
+  @media ${device.lg} {
+    padding: 0px;
+    background-image: url(${props => props.featuredImage});
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    height: 80vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+  };
+  @media ${device.xl} {
     padding: 0px;
     background-image: url(${props => props.featuredImage});
     background-repeat: no-repeat;
@@ -41,6 +68,12 @@ const InnerWrapper = styled.div`
   display: grid;
   
   @media ${device.sm} {
+    display: grid;
+  };
+  @media ${device.lg} {
+    display: grid;
+  };
+  @media ${device.xl} {
     display: flex;
   };
 `
@@ -48,10 +81,20 @@ const InnerWrapper = styled.div`
 const TagLine = styled.h1`
   padding: 20px;
   margin: 0;
+  text-align: center;
   
   @media ${device.sm} {
+    padding: 20px;
+    margin: 0;
+  };
+  @media ${device.lg} {
     font-wight: 900;
     font-size: 50px;
+  };
+  @media ${device.xl} {
+    font-wight: 900;
+    font-size: 50px;
+    text-align: start;
   };
 `
 

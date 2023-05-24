@@ -26,30 +26,30 @@ exports.createPages = ({ graphql, actions }) => {
     // ==== PAGES (WORDPRESS NATIVE) ====
     graphql(
       `
-        {
-          wpcontent {
-            pages {
-              edges {
-                node {
-                  id
-                  slug
-                  status
-                  template {
-                    templateName
-                  }
-                  featuredImage {
-                    node {
-                      sourceUrl
-                    }
-                  }
-                  title
-                  content
+      {
+        wpcontent {
+          pages(first: 50) {
+            edges {
+              node {
+                id
+                slug
+                status
+                template {
+                  templateName
                 }
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+                title
+                content
               }
             }
           }
         }
-      `
+      }
+    `
     )
       .then((result) => {
         if (result.errors) {
@@ -60,11 +60,25 @@ exports.createPages = ({ graphql, actions }) => {
         // Create Page pages.
         const aboutUsTemplate = path.resolve("./src/templates/aboutUs.js");
 
-        const ourServicesTemplate = path.resolve("./src/templates/ourServices.js");
+        const internetServicesTemplate = path.resolve("./src/templates/internetServices.js");
 
-        const ourTechnologyTemplate = path.resolve("./src/templates/ourTechnology.js");
+        const callCenterTemplate = path.resolve("./src/templates/callCenter.js");
+
+        const connectivityTemplate = path.resolve("./src/templates/connectivity.js");
+
+        const cloudServicesTemplate = path.resolve("./src/templates/cloudServices.js");
+
+        const consultingAdvisoryTemplate = path.resolve("./src/templates/consultingAdvisory.js");
+
+        const timelessTechnologyTemplate = path.resolve("./src/templates/timelessTechnology.js");
 
         const contactTemplate = path.resolve("./src/templates/contact.js");
+
+        const partnersTemplate = path.resolve("./src/templates/partnership.js");
+
+        const careersTemplate = path.resolve("./src/templates/careers.js")
+
+        const quoteRequestTemplate = path.resolve("./src/templates/quoteRequest.js")
 
         const privacyPolicyTemplate = path.resolve("./src/templates/privacyPolicy.js");
 
@@ -75,14 +89,35 @@ exports.createPages = ({ graphql, actions }) => {
             case "About Us":
               component = aboutUsTemplate
               break;
-            case "Our Services":
-              component = ourServicesTemplate
+            case "Call Center":
+              component = callCenterTemplate
               break;
-            case "Technology":
-              component = ourTechnologyTemplate
+            case "Timeless Technology":
+              component = timelessTechnologyTemplate
+              break;
+            case "Internet Services":
+              component = internetServicesTemplate
+              break;
+            case "Cloud Services":
+              component = cloudServicesTemplate
+              break;
+            case "Consulting Advisory":
+              component = consultingAdvisoryTemplate
+              break;
+            case "Connectivity":
+              component = connectivityTemplate
               break;
             case "Contact":
               component = contactTemplate
+              break;
+            case "Partners":
+              component = partnersTemplate
+              break;
+            case "Careers":
+              component = careersTemplate
+              break;
+            case "Quote Request":
+              component = quoteRequestTemplate
               break;
             case "Privacy Policy":
               component = privacyPolicyTemplate
@@ -111,157 +146,8 @@ exports.createPages = ({ graphql, actions }) => {
           });
         });
       })
+
       // ==== END PAGES ====
-
-      // ==== SERVICE ====
-      .then(() => {
-        graphql(
-          `
-            {
-              wpcontent {
-                services {
-                  edges {
-                    node {
-                      content
-                      service {
-                        websiteUrl
-                      }
-                      title
-                      slug
-                      link
-                      featuredImage {
-                        node {
-                          sourceUrl
-                        }
-                      }
-                      excerpt
-                    }
-                  }
-                }
-              }
-            }
-          `
-        ).then((result) => {
-          if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
-          }
-          const serviceTemplate = path.resolve(
-            "./src/templates/service.js"
-          );
-          // We want to create a detailed page for each
-          // post node. We'll just use the WordPress Slug for the slug.
-          // The Post ID is prefixed with 'POST_'
-          _.each(result.data.wpcontent.services.edges, (edge) => {
-            createPage({
-              path: `/service/${edge.node.slug}/`,
-              component: slash(serviceTemplate),
-              context: edge.node,
-            });
-          });
-        });
-      })
-      // ==== END SERVICE ====
-
-      // ==== PARTNER ====
-      .then(() => {
-        graphql(
-          `
-            {
-              wpcontent {
-                partners {
-                  edges {
-                    node {
-                      content
-                      partner {
-                        websiteUrl
-                      }
-                      title
-                      slug
-                      link
-                      featuredImage {
-                        node {
-                          sourceUrl
-                        }
-                      }
-                      excerpt
-                    }
-                  }
-                }
-              }
-            }
-          `
-        ).then((result) => {
-          if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
-          }
-          const partnerTemplate = path.resolve(
-            "./src/templates/partner.js"
-          );
-          // We want to create a detailed page for each
-          // post node. We'll just use the WordPress Slug for the slug.
-          // The Post ID is prefixed with 'POST_'
-          _.each(result.data.wpcontent.partners.edges, (edge) => {
-            createPage({
-              path: `/partner/${edge.node.slug}/`,
-              component: slash(partnerTemplate),
-              context: edge.node,
-            });
-          });
-        });
-      })
-      // ==== END PARTNER ====
-
-      // ==== TECHNOLOGY ====
-      .then(() => {
-        graphql(
-          `
-            {
-              wpcontent {
-                technologies {
-                  edges {
-                    node {
-                      content
-                      technology {
-                        websiteUrl
-                      }
-                      title
-                      slug
-                      link
-                      featuredImage {
-                        node {
-                          sourceUrl
-                        }
-                      }
-                      excerpt
-                    }
-                  }
-                }
-              }
-            }
-          `
-        ).then((result) => {
-          if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
-          }
-          const technologyTemplate = path.resolve(
-            "./src/templates/technology.js"
-          );
-          // We want to create a detailed page for each
-          // post node. We'll just use the WordPress Slug for the slug.
-          // The Post ID is prefixed with 'POST_'
-          _.each(result.data.wpcontent.technologies.edges, (edge) => {
-            createPage({
-              path: `/technology/${edge.node.slug}/`,
-              component: slash(technologyTemplate),
-              context: edge.node,
-            });
-          });
-        });
-      })
-      // ==== END TECHNOLOGY ====
 
       // ==== BLOG POSTS ====
       .then(() => {
