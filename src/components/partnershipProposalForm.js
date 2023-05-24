@@ -199,8 +199,10 @@ export default function PartnershipProposalForm() {
     const [mobileNumberValue, setMobileNumberValue] = useState('')
     const [officeNumberValue, setOfficeNumberValue] = useState('')
 
+    const isBrowser = typeof window !== "undefined"
+
     return <Wrapper>
-        <Mutation mutation={PARTNERSHIP_MUTATION}>
+        {isBrowser && (<Mutation mutation={PARTNERSHIP_MUTATION}>
             {(newPartnershipProposal, { loading, error, data }) => (
                 <div>
                     <Form
@@ -273,6 +275,6 @@ export default function PartnershipProposalForm() {
 
             )}
 
-        </Mutation>
+        </Mutation>)}
     </Wrapper>
 }

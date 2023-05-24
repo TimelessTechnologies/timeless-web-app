@@ -151,9 +151,10 @@ export default function CareerApplicationForm() {
     const [applyForValue, setApplyForValue] = useState('')
     const [uploadCvValue, setUploadCvValue] = useState(null)
 
+    const isBrowser = typeof window !== "undefined"
 
     return <Wrapper>
-        <Mutation mutation={CAREER_APPLICATION_MUTATION} fetchPolicy="no-cache">
+        {isBrowser && (<Mutation mutation={CAREER_APPLICATION_MUTATION} fetchPolicy="no-cache">
             {(newCareerApplication, { loading, error, data }) => (
                 <div>
                     <Form
@@ -217,6 +218,6 @@ export default function CareerApplicationForm() {
 
             )}
 
-        </Mutation>
+        </Mutation>)}
     </Wrapper>
 }

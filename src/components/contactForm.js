@@ -193,8 +193,10 @@ export default function ContactForm() {
     const [emailValue, setEmailValue] = useState('')
     const [messageValue, setMessageValue] = useState('')
 
+    const isBrowser = typeof window !== "undefined"
+
     return <Wrapper>
-        <Mutation mutation={MESSAGE_MUTATION}>
+        {isBrowser && (<Mutation mutation={MESSAGE_MUTATION}>
             {(newContactMessage, { loading, error, data }) => (
                 <div>
                     <Form
@@ -243,6 +245,6 @@ export default function ContactForm() {
 
             )}
 
-        </Mutation>
+        </Mutation>)}
     </Wrapper>
 }

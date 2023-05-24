@@ -191,10 +191,10 @@ const QuoteRequestForm = (props) => {
     const [nameValue, setNameValue] = useState('')
     const [emailValue, setEmailValue] = useState('')
     const [messageValue, setMessageValue] = useState('')
-    const [productServiceValue, setProductServiceValue] = useState(props.service)
-
+    const [productServiceValue, setProductServiceValue] = useState('props.service')
+    const isBrowser = typeof window !== "undefined"
     return <Wrapper>
-        <Mutation mutation={QUOTE_MUTATION}>
+        {isBrowser && (<Mutation mutation={QUOTE_MUTATION}>
             {(newQuoteRequest, { loading, error, data }) => (
                 <div>
                     <Form
@@ -251,7 +251,7 @@ const QuoteRequestForm = (props) => {
 
             )}
 
-        </Mutation>
+        </Mutation>)}
     </Wrapper>
 }
 

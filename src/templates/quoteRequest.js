@@ -209,6 +209,9 @@ const Content = styled.div`
   }; 
 `
 export default function BlogPost({ pageContext, location }) {
+  const { state = {} } = location
+  const { service } = state
+
   const scrollingTop = (event) => {
     window.scrollBy({
       top: 700,
@@ -216,6 +219,7 @@ export default function BlogPost({ pageContext, location }) {
       behavior: "smooth",
     });
   };
+  
   return <Layout>
     <Seo title={pageContext.title} />
       <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
@@ -227,6 +231,6 @@ export default function BlogPost({ pageContext, location }) {
     <Content>
       <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
     </Content>
-    <QuoteRequestForm service={location.state.service}/>
+    <QuoteRequestForm service={service ? service : ''}/>
   </Layout>
 };

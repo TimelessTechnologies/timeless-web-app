@@ -17,7 +17,7 @@ export const client = new ApolloClient({
       if (networkError) console.log(`[Network error]: ${networkError}`);
     }),
     createUploadLink({
-        uri: 'http://timeless.local/graphql',
+        uri: 'https://reviews.rulancreative.co.zw/graphql',
         // headers: {
         //     'Authorization': process.env.NEXT_PUBLIC_WP_AUTHORIZATION,
         //     'Content-Type': 'application/json',
