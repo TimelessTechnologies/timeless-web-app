@@ -184,12 +184,10 @@ const OrderButton = styled(Link)`
 
 const Feature = styled.div`
   padding-right: 2vh;
-  text-align: center;
 
   @media ${device.sm} {
     width: 30%;
     padding-right: 2vh;
-    text-align: center;
   }
 
   @media ${device.lg} {
@@ -258,7 +256,7 @@ export default function ServiceItems() {
 
       <h4>Omni Channel Workflow</h4>
 
-      <img width="100%" src="http://timeless.local/wp-content/uploads/2023/05/omni_channel.png" alt="" />
+      <img width="100%" src="https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/omni_channel.png" alt="" />
 
     </Intro>
   </Wrapper>

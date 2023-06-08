@@ -197,7 +197,7 @@ export default function ServiceItems() {
 
       <h4>IP PBX Architecture</h4>
 
-      <img width="100%" src="http://timeless.local/wp-content/uploads/2023/05/ippbx.png" alt="" />
+      <img width="100%" src="https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/ippbx.png" alt="" />
     </Intro>
   </Wrapper>
 }

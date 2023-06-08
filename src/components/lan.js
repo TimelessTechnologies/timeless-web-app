@@ -199,12 +199,13 @@ export default function ServiceItems() {
         and maintain. It covers a short distance, and so the error and noise are
         minimized.
         <br />
-        The LAN can be made up of cabling from one room or building to the next,
+        The LAN can be made up of cabling from one room or building to the next.
         It can also be wireless in which access points are used to distribute signal
-        to nearby devices to connect wireless or it could be a hybrid of cabling and wireless.
-        Whatever design you prefer for your organisation, talk to use and will assist you accordingly.
+        to nearby devices to connect wirelessly or it could be a hybrid of cabling and
+        wireless. Whatever design you prefer for your organisation, talk to use and
+        will assist you accordingly.
       </Intro>
-      <Image width="50%" src='http://timeless.local/wp-content/uploads/2023/05/lan.png' />
+      <Image width="50%" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/lan.png' />
     </div>
   </Wrapper>
 }

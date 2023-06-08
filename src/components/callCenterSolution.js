@@ -188,12 +188,13 @@ export default function ServiceItems() {
     </Header>
     <Divider />
     <Intro>
-      Your call center operation requires a proactive, scalable,
-      end-to-end solution to monitor and manage processed and systems.
-      *astTECS® call center solution is just what you need. It provides
-      visibility and control over the performance and productivity of your call
-      center. *astTECS® call center solution has all the features associated with
-      high end proprietary call center solutions.
+    In this modern environment where businesses are evolving much faster 
+    and customer taste is changing at an even faster pace, it is no longer 
+    good enough for an organisation to rely solely on a Call Centre. What is
+    now needed is a Contact Centre in which customers have a variety of ways to
+    engage your organisation. These ways vary from calls, emails, SMS, Social
+    Platforms like Whatsapp, Facebook, Linkedin, Instagram among others. 
+    This is the transition journey which Timeless Technology is willing and capable to take you through.
 
       <FeatureWrapper>
 
@@ -275,7 +276,7 @@ export default function ServiceItems() {
       </FeatureWrapper>
       <h4>Call Center Solution Dashboard</h4>
 
-      <img width="100%" src="http://timeless.local/wp-content/uploads/2023/05/call_center.png" alt="" />
+      <img width="100%" src="https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/call_center.png" alt="" />
     </Intro>
   </Wrapper>
 }

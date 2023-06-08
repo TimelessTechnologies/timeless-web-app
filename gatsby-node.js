@@ -62,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
 
         const internetServicesTemplate = path.resolve("./src/templates/internetServices.js");
 
-        const callCenterTemplate = path.resolve("./src/templates/callCenter.js");
+        const callCenterTemplate = path.resolve("./src/templates/contactCenter.js");
 
         const connectivityTemplate = path.resolve("./src/templates/connectivity.js");
 

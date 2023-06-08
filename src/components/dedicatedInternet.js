@@ -140,12 +140,12 @@ export default function ServiceItems() {
     </Header>
     <Divider />
     <Intro>
-      This is internet with maximum and minimum speeds symmetrical
-      and are guaranteed any day and any time throughout the month.
-      This type of a connection has bottlenecks or metering lights,
+      This  internet offers symmetrical minimum and maximum speed 
+      which is guaranteed anytime of the day throughout the month.
+      This type of a connection hasno bottlenecks or metering lights,
       just a constant and steady stream of traffic in both directions
       that belongs exclusively to your business.  This solution provides
-      business-grade features, higher speeds clarify on understanding
+      business-grade features, higher speeds and clarify on understanding
       what is being used compared to what the provider is supplying.
       <br />
       The contention ratio of a dedicated service is always 1:1.
@@ -153,9 +153,9 @@ export default function ServiceItems() {
       the service bandwidth. Services with a lower contention ratio
       generally have a higher quality of service. Contention ratios
       are expressed as a ratio of number of customers sharing that
-      bandwidth. For example, fibre 2Mb/2Mb (1:5) means that the
+      bandwidth. For example, fibre 2Mbps/2Mbps (1:5) means that the
       symmetrical service is shared with five customers with the
-      minimum speed provided at 0.4Mb/0.4Mb.  It is, therefore,
+      minimum speed provided at 0.4Mbs/0.4Mbs.  It is, therefore,
       important to understand the impact of a shared service has on the
       link performance.  Depending on who you share your service with,
       you may always see your full bandwidth, but then again, you might not.
@@ -165,7 +165,7 @@ export default function ServiceItems() {
       <h4>Who Should Use Dedicated Internet?</h4>
       <ul>
         <li>Businesses in need of high-performing internet </li>
-        <li>Business consistent, fast upload and download speeds</li>
+        <li>Business in need of consistent and fast upload and download speeds</li>
         <li>Requires high quality-of-service (QoS) </li>
         <li>Business cannot afford to let networking limitations constrain their success and throttle employee output. </li>
         <li>With DIA your network can perform continuous file transfers (e.g. remote data backup), stream audio and video more smoothly, and deliver reliable cloud connectivity.</li>

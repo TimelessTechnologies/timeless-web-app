@@ -240,7 +240,7 @@ export default function Footer() {
                 alt=""
               />
             </LogoWrapper>
-            <Copy>© Copyright 2023, Timeless Technologies. All rights reserved</Copy>
+            <Copy>© Copyright 2023, Timeless Technology. All rights reserved</Copy>
           </CopyWrapper>
         </BottomFooterInner>
       </Wrapper>

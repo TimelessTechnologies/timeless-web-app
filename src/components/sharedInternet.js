@@ -171,12 +171,12 @@ export default function ServiceItems() {
 
     </Intro>
     <ServiceItemsWrapper>
-      <h4>Who Should Use Dedicated Internet?</h4>
+      <h4>Who Should Use Shared Internet?</h4>
       <ul>
         <li>Where a business is not heavily dependent on internet </li>
         <li>Cost is a key consideration </li>
-        <li>General peak periods of other users are not necessarily the same peak period for your business
-          If your operations can cope with a service that varies in performance from minute to minute.</li>
+        <li>General peak periods of other users are not necessarily the same peak period for your business</li>
+        <li> If your operations can cope with a service that varies in performance from minute to minute. </li>
       </ul>
     </ServiceItemsWrapper>
   </Wrapper>

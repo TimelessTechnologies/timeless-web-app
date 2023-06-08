@@ -7,6 +7,7 @@ import OmniChannel from "../components/omniChannel";
 import IpPbx from "../components/ipPbx";
 import Seo from "../components/seo";
 import { device } from "../helpers/mediaQueries";
+
 const OuterWrapper = styled.div`
   display: grid;
   background-image: url(${props => props.featuredImage});
@@ -14,7 +15,7 @@ const OuterWrapper = styled.div`
   background-size: cover;
   background-position: center;
   margin-top: 20px;
-  height: 60vh;
+  height: 40vh;
   background-color: rgba(35,77,36,.5);
   background-blend-mode: multiply;
 
@@ -26,21 +27,29 @@ const OuterWrapper = styled.div`
     background-position: center;
     margin-top: 20px;
     height: 40vh;
+    background-color: rgba(35,77,36,.5);
+    background-blend-mode: multiply;
   }
+
   @media ${device.lg} {
     background-image: url(${props => props.featuredImage});
     background-repeat: no-repeat;
     background-size: 100vw;
     margin-top: 40px;
     height: 70vh;
-    justify-content: flex-start;
+    background-color: rgba(35,77,36,.5);
+    background-blend-mode: multiply;
+    justify-content: center;
   }
+
   @media ${device.xl} {
     background-image: url(${props => props.featuredImage});
     background-repeat: no-repeat;
     background-size: 100vw;
     margin-top: 40px;
     height: 70vh;
+    background-color: rgba(35,77,36,.5);
+    background-blend-mode: multiply;
   }
 `
 
@@ -61,7 +70,6 @@ const Wrapper = styled.div`
     margin-bottom: 0;
   }
   @media ${device.lg} {
-    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     align-content: end;
@@ -90,14 +98,12 @@ const Heading = styled.h1`
     color: #fff;
     margin: 10px;
   }
-
   @media ${device.lg} {
     font-wight: 900;
     font-size: 50px;
     width: 500px;
     color: #fff;
   }
-
   @media ${device.xl} {
     font-wight: 900;
     font-size: 50px;
@@ -113,25 +119,25 @@ const Description = styled.div`
   margin: 10px;
   font-size: 15px;
 
-  @media ${device.sm} {
-    font-weight: 400;
-    color: #fff;
-    display: grid;
-    margin: 10px;
-    font-size: 15px;
-  }
+@media ${device.sm} {
+  font-weight: 400;
+  color: #fff;
+  display: grid;
+  margin: 10px;
+  font-size: 15px;
+}
 
-  @media ${device.lg} {
-    width: 500px;
-    font-weight: 400;
-    color: #fff;
-  }
+@media ${device.lg} {
+  width: 500px;
+  font-weight: 400;
+  color: #fff;
+}
 
-  @media ${device.xl} {
-    width: 500px;
-    font-weight: 400;
-    color: #fff;
-  }
+@media ${device.xl} {
+  width: 500px;
+  font-weight: 400;
+  color: #fff;
+}
 `
 
 const ScrollDown = styled.button`
@@ -140,25 +146,24 @@ const ScrollDown = styled.button`
   background: none;
   margin: 10px;
 
-  @media ${device.sm} {
-    border: none;
-    border: none;
-    width: 20px;
-    background: none;
-    margin: 10px;
-  }
+@media ${device.sm} {
+  border: none;
+  width: 20px;
+  background: none;
+  margin: 10px;
+}
 
-  @media ${device.sm} {
-    border: none;
-    width: fit-content;
-    background: none;
-  }
+@media ${device.lg} {
+  border: none;
+  width: fit-content;
+  background: none;
+}
 
-  @media ${device.sm} {
-    border: none;
-    width: fit-content;
-    background: none;
-  }
+@media ${device.xl} {
+  border: none;
+  width: fit-content;
+  background: none;
+}
 `
 
 const ScrollIcon = styled(CircleArrowDown)`
@@ -166,8 +171,8 @@ const ScrollIcon = styled(CircleArrowDown)`
   width: 40px;
 
   @media ${device.sm} {
-    color: #fff;
-    width: 40px;
+  color: #fff;
+  width: 40px;
   }
   @media ${device.lg} {
     color: #fff;
@@ -178,6 +183,7 @@ const ScrollIcon = styled(CircleArrowDown)`
     width: 80px;
   }
 `
+
 export default function OurServices({ pageContext }) {
   const targetElement = useRef();
   const scrollingTop = (event) => {
@@ -195,7 +201,7 @@ export default function OurServices({ pageContext }) {
       <OuterWrapper featuredImage={pageContext.featuredImage.node.sourceUrl} >
         <Wrapper>
           <Heading dangerouslySetInnerHTML={{ __html: pageContext.title }} />
-          <Description>{ pageContext.content }</Description>
+          <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
           <ScrollDown onClick={scrollingTop}><ScrollIcon title="Love" /></ScrollDown>
         </Wrapper>
       </OuterWrapper>

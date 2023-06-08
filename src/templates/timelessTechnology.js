@@ -113,8 +113,8 @@ export default function OurTechnology({ pageContext }) {
         </Wrapper>
       </OuterWrapper>
     </div>
-    <div ref={targetElement}>
+    <Wrapper ref={targetElement}>
       <Description dangerouslySetInnerHTML={{ __html: pageContext.content }} />
-    </div>
+    </Wrapper>
   </Layout>
 };

@@ -84,6 +84,6 @@ export default function ContactDetails() {
         <Address>20 King George Road</Address>
         <Address>2nd Floor Pasangano Building</Address>
         <Address>Avondale, Harare</Address>
-        <Email>sales@timelesstechnology.co.za</Email>
+        <Email>sales@timelesstechnology.co.zw</Email>
     </Wrapper>
 }

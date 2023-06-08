@@ -208,7 +208,7 @@ export default function ServiceItems() {
         Thus, the router functionality is reduced to switch functionality, 
         speeding up the data transfer significantly.
       </Intro>
-      <Image src='http://timeless.local/wp-content/uploads/2023/05/mpls2.png' />
+      <Image src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/mpls2.png' />
     </div>
   </Wrapper>
 }

@@ -203,7 +203,7 @@ export default function ServiceItems() {
         conferencing. A point to point network can also be configured to carry voice,
         video, Internet, and data services together over the same point to point connection.
       </Intro>
-      <Image width="50%" src='http://timeless.local/wp-content/uploads/2023/05/ptpwan.png' />
+      <Image width="50%" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/ptpwan.png' />
     </div>
   </Wrapper>
 }

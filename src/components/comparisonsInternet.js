@@ -123,19 +123,15 @@ const Divider = styled.div`
 
 const Intro = styled.div`
   color: #1a4c1d;
-  font-size: 15px;
   
   @media ${device.sm} {
     color: #1a4c1d;
-    font-size: 25px;
   }
   @media ${device.lg} {
     color: #1a4c1d;
-    font-size: 25px;
   }
   @media ${device.xl} {
     color: #1a4c1d;
-    font-size: 25px;
   }
 `
 

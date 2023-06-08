@@ -6,7 +6,6 @@ import MplsWan from "../components/mplsWan";
 import PtpWan from "../components/ptpWan";
 import Lan from "../components/lan";
 import Seo from "../components/seo";
-import Technologies from '../components/technologyItems';
 import { device } from "../helpers/mediaQueries";
 
 const OuterWrapper = styled.div`
@@ -208,7 +207,6 @@ export default function Connectivtiy({ pageContext }) {
       <div ref={targetElement}><MplsWan /></div>
       <div><PtpWan /></div>
       <div><Lan /></div>
-      <div><Technologies /></div>
     </Layout>
   )
 };

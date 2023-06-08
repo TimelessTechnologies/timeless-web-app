@@ -366,7 +366,7 @@ export default function ServiceItems() {
 
   return <Wrapper>
     <Header>
-      Microsoft365
+      Microsoft 365
     </Header>
     <Divider />
     <Intro>
@@ -401,35 +401,35 @@ export default function ServiceItems() {
         <div><b>Microsoft 365 Business Basic:</b></div>
         <Apps>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Word</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Excel_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Excel_256x256.png' />
             <AppText>Excel</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Powerpoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/PowerPoint_256x256.png' />
             <AppText>PowerPoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
             <AppText>Teams</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Outlook_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Outlook_256x256.png' />
             <AppText>Outlook</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Onedrive_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/OneDrive_256x256.png' />
             <AppText>OneDrive</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Sharepoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/SharePoint_256x256.png' />
             <AppText>SharePoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Exchange</AppText>
           </AppWrapper>
         </Apps>
@@ -449,43 +449,43 @@ export default function ServiceItems() {
         <div><b>Desktop, web, and mobile apps and services:</b></div>
         <Apps>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Word</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Excel_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Excel_256x256.png' />
             <AppText>Excel</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Powerpoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/PowerPoint_256x256.png' />
             <AppText>PowerPoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
             <AppText>Teams</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Outlook_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Outlook_256x256.png' />
             <AppText>Outlook</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Onedrive_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/OneDrive_256x256.png' />
             <AppText>OneDrive</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Sharepoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/SharePoint_256x256.png' />
             <AppText>SharePoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Exchange</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Access_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Access_256x256.png' />
             <AppText>Access (PC Only)</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Publisher_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Publisher_256x256.png' />
             <AppText>Publisher (PC Only)</AppText>
           </AppWrapper>
         </Apps>
@@ -504,51 +504,51 @@ export default function ServiceItems() {
         <div><b>Desktop, web, and mobile apps and services:</b></div>
         <Apps>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Word</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Excel_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Excel_256x256.png' />
             <AppText>Excel</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Powerpoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/PowerPoint_256x256.png' />
             <AppText>PowerPoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
             <AppText>Teams</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Outlook_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Outlook_256x256.png' />
             <AppText>Outlook</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Onedrive_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/OneDrive_256x256.png' />
             <AppText>OneDrive</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Sharepoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/SharePoint_256x256.png' />
             <AppText>SharePoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Exchange</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Access_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Access_256x256.png' />
             <AppText>Access</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Publisher_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Publisher_256x256.png' />
             <AppText>Publisher</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Intune_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/uploads/2023/06/intune.png' />
             <AppText>Intune</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Azure_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/06/azure.png' />
             <AppText>Azure</AppText>
           </AppWrapper>
         </Apps>
@@ -566,35 +566,35 @@ export default function ServiceItems() {
         <div><b>Desktop, web, and mobile apps and services:</b></div>
         <Apps>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Word</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Excel_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Excel_256x256.png' />
             <AppText>Excel</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Powerpoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/PowerPoint_256x256.png' />
             <AppText>PowerPoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Microsoft-Teams_256x256.png' />
             <AppText>Teams</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Outlook_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Outlook_256x256.png' />
             <AppText>Outlook</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Onedrive_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/OneDrive_256x256.png' />
             <AppText>OneDrive</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Sharepoint_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/SharePoint_256x256.png' />
             <AppText>SharePoint</AppText>
           </AppWrapper>
           <AppWrapper>
-            <img alt="" height="50" src='http://timeless.local/wp-content/uploads/2023/05/Word_256x256.png' />
+            <img alt="" height="50" src='https://reviews.rulancreative.co.zw/wp-content/uploads/2023/05/Word_256x256.png' />
             <AppText>Exchange</AppText>
           </AppWrapper>
         </Apps>
